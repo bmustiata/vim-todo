@@ -114,6 +114,13 @@ Toggles the current checkbox.
 Example
 -------
 
+Initial text:
+```text
+1. Go to the sea
+2. Watch the sea
+3. Go back
+```
+
 `TodoToggle` on the first line:
 ```text
 [ ] 1. Go to the sea
