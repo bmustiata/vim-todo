@@ -9,6 +9,8 @@ Unlike other plugins allows different character for the checked and the unchecke
 
 [https://en.wikipedia.org/wiki/X_mark](https://en.wikipedia.org/wiki/X_mark)
 
+Furthermore by default it's aware of unordered or ordered lists.
+
 Usage and Installation
 ----------------------
 
@@ -137,21 +139,21 @@ Initial text:
 
 `TodoToggle` on the first line:
 ```text
-[ ] 1. Go to the sea
+1. [ ] Go to the sea
 2. Watch the sea
 3. Go back
 ```
 
 `TodoToggle` again:
 ```text
-[x] 1. Go to the sea
+1. [x] Go to the sea
 2. Watch the sea
 3. Go back
 ```
 
 And `TodoToggle` again:
 ```text
-[ ] 1. Go to the sea
+1. [ ] Go to the sea
 2. Watch the sea
 3. Go back
 ```
