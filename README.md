@@ -27,6 +27,20 @@ map <Space> :TodoToggle<cr>
 Example Lists
 -------------
 
+### GitHub Task List
+
+```text
+- [ ] Task 1
+- [x] Task 2
+- [x] Task 3
+```
+
+Has the output:
+
+- [ ] Task 1
+- [x] Task 2
+- [x] Task 3
+
 ### Default settings
 
 Output in vim:
