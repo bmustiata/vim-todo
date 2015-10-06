@@ -22,13 +22,18 @@ if show_square_brackets == '0':
 else:
     show_square_brackets = True
 
+CHECKBOX_INDENT_INDEX=1
+CHECKBOX_TICK_INDEX=5
+CHECKBOX_TEXT_INDEX=6
+
 if show_square_brackets:
-    CHECKBOX_REGEXP = re.compile(r'^(\s*)\[(.+)\] (.*)$')
+    CHECKBOX_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)\[(.+)\] (.*)$')
 else:
-    CHECKBOX_REGEXP = re.compile(r'^(\s*?)(\S+) (.*)$')
+    CHECKBOX_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)(\S+) (.*)$')
 
-
-SPACES_REGEXP = re.compile(r'^(\s*)(.*)$')
+SPACES_INDENT_INDEX=1
+SPACES_TEXT_INDEX=5
+SPACES_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)(.+?)$')
 
 def TodoCreateBox():
     """
@@ -74,28 +79,28 @@ def TodoToggle():
 def create_checkbox(current_line, character):
     m = SPACES_REGEXP.match(current_line)
     if show_square_brackets:
-        current_line = m.group(1) + '[' + character + '] ' + m.group(2)
+        current_line = m.group(SPACES_INDENT_INDEX) + '[' + character + '] ' + m.group(SPACES_TEXT_INDEX)
     else:
-        current_line = m.group(1) + character + ' ' + m.group(2)
+        current_line = m.group(SPACES_INDENT_INDEX) + character + ' ' + m.group(SPACES_TEXT_INDEX)
     return current_line
 
 
 def is_checked(current_line):
     m = CHECKBOX_REGEXP.match(current_line)
-    if m.group(2) == check_character:
+    if m.group(CHECKBOX_TICK_INDEX) == check_character:
         return True
 
 
 def remove_checkbox(current_line):
     m = CHECKBOX_REGEXP.match(current_line)
-    return m.group(1) + m.group(3)
+    return m.group(CHECKBOX_INDENT_INDEX) + m.group(CHECKBOX_TEXT_INDEX)
 
 
 def is_todo_line(current_line):
     m = CHECKBOX_REGEXP.match(current_line)
     if not m:
         return False
-    if m.group(2) != check_character and m.group(2) != uncheck_character:
+    if m.group(CHECKBOX_TICK_INDEX) != check_character and m.group(CHECKBOX_TICK_INDEX) != uncheck_character:
         return False
 
     return True
