@@ -23,17 +23,17 @@ else:
     show_square_brackets = True
 
 CHECKBOX_INDENT_INDEX=1
-CHECKBOX_TICK_INDEX=5
-CHECKBOX_TEXT_INDEX=6
+CHECKBOX_TICK_INDEX=6
+CHECKBOX_TEXT_INDEX=7
 
 if show_square_brackets:
-    CHECKBOX_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)\[(.+)\] (.*)$')
+    CHECKBOX_REGEXP = re.compile(r'^(\s*((-\s+)|(\d+\.\s+)|(\w+\.\s+))?)\[(.+)\] (\S+?.*)$')
 else:
-    CHECKBOX_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)(\S+) (.*)$')
+    CHECKBOX_REGEXP = re.compile(r'^(\s*((-\s+)|(\d+\.\s+)|(\w+\.\s+))?)(\S+) (\S+?.*)$')
 
 SPACES_INDENT_INDEX=1
-SPACES_TEXT_INDEX=5
-SPACES_REGEXP = re.compile(r'^(\s*((- )|([\d\w]\. ))?)(.+?)$')
+SPACES_TEXT_INDEX=6
+SPACES_REGEXP = re.compile(r'^(\s*((-\s+)|(\d+\.\s+)|(\w+\.\s+))?)(\S+?.*)$')
 
 def TodoCreateBox():
     """
