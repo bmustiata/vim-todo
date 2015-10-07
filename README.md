@@ -1,15 +1,8 @@
 vim-todo
 ========
 
-A super simple plugin that generates checkboxes that can be checked and unchecked.
+A super simple plugin that generates checkboxes that can be checked and unchecked. Simpe to use, full of features.
 
-Unlike other plugins allows different character for the checked and the unchecked, so you can use the Unicode ones.
-
-[https://en.wikipedia.org/wiki/Check_mark](https://en.wikipedia.org/wiki/Check_mark)
-
-[https://en.wikipedia.org/wiki/X_mark](https://en.wikipedia.org/wiki/X_mark)
-
-Furthermore by default it's aware of unordered or ordered lists.
 
 Usage and Installation
 ----------------------
@@ -54,7 +47,18 @@ Output in vim:
     [ ] Task 3
 ```
 
+Features
+--------
+
 ### Custom Check Mark
+
+You can use custom check marks, and disable the square brackets generation.
+
+Thus you can use characters such as:
+
+[https://en.wikipedia.org/wiki/Check_mark](https://en.wikipedia.org/wiki/Check_mark)
+
+[https://en.wikipedia.org/wiki/X_mark](https://en.wikipedia.org/wiki/X_mark)
 
 Vim settings:
 
@@ -110,22 +114,53 @@ FAILED Line 1
     FAILED Task 3
 ```
 
+### Indent Aware
+
+`vim-todo` is aware of unordered or ordered lists, and keeps the indentation inside the list.
+
+For example toggling the todo checkbox on each line for:
+
+```text
+Overall
+    9.  List:
+        i.   First item
+        ii.  Second item
+        iii. Third item
+    10. List:
+        i.   First item
+        ii.  Second item
+        iii. Third item
+```
+will result in:
+
+```text
+[ ] Overall
+    9.  [ ] List:
+        i.   [ ] First item
+        ii.  [ ] Second item
+        iii. [ ] Third item
+    10. [ ] List:
+        i.   [ ] First item
+        ii.  [ ] Second item
+        iii. [ ] Third item
+```
+
 Commands
 --------
 
 This plugin exports the following commands to your Vim:
 
-### TodoCreateBox
+`TodoToggle`
+
+Toggles the current checkbox. Creates it if needed.
+
+`TodoCreateBox`
 
 Creates a checkbox for the current text.
 
-### TodoRemoveBox
+`TodoRemoveBox`
 
 Removes a checkbox for the current text.
-
-### TodoToggle
-
-Toggles the current checkbox.
 
 Example
 -------
@@ -163,19 +198,19 @@ Configuration Variables
 
 The plugin allows configuration with the following variables:
 
-#### 1. g:TodoItemChecked
+1. `g:TodoItemChecked`
 
 A string that specifies what characters to be used for the check value.
 If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
 `]`, otherwise it must not contain an empty space.
 
-#### 2. g:TodoItemUnChecked
+2. `g:TodoItemUnChecked`
 
 A string that specifies what characters to be used for the unchecked value.
 If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
 `]`, otherwise it must not contain an empty space.
 
-#### 3. g:TodoShowSquareBrackets
+3. `g:TodoShowSquareBrackets`
 
 `0` or `1`, if to show the square brackets around the items checked or unchecked.
 
