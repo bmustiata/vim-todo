@@ -50,7 +50,7 @@ Output in vim:
 Features
 --------
 
-### Custom Check Mark
+### Custom Check And Uncheck Mark
 
 You can use custom check marks, and disable the square brackets generation.
 
@@ -200,17 +200,17 @@ The plugin allows configuration with the following variables:
 
 1. `g:TodoItemChecked`
 
-A string that specifies what characters to be used for the check value.
-If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
-`]`, otherwise it must not contain an empty space.
+    A string that specifies what characters to be used for the check value.
+    If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
+    `]`, otherwise it must not contain an empty space.
 
 2. `g:TodoItemUnChecked`
 
-A string that specifies what characters to be used for the unchecked value.
-If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
-`]`, otherwise it must not contain an empty space.
+    A string that specifies what characters to be used for the unchecked value.
+    If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
+    `]`, otherwise it must not contain an empty space.
 
 3. `g:TodoShowSquareBrackets`
 
-`0` or `1`, if to show the square brackets around the items checked or unchecked.
+    `0` or `1`, if to show the square brackets around the items checked or unchecked.
 
