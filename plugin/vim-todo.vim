@@ -20,7 +20,6 @@ if !has("python3")
    if !has("python")
        echo  "vim-todo requires Python 2 or 3."
        unlet g:_vimtodopy
-       return
    endif
    let g:_vimtodopy=":py "
 endif
