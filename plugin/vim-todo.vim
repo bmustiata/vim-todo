@@ -34,24 +34,22 @@ endif
 " Register the current plugin folder into the sys.path
 "
 let s:SourcedFile=expand("<sfile>")
-exec g:_vimtodopy << endpython
-import vim,os,sys
 
-module_folder = os.path.dirname(vim.eval('s:SourcedFile'))
-sys.path.append(module_folder)
-endpython
+exec g:_vimtodopy "\n
+\import vim,os,sys\n
+\\n
+\module_folder = os.path.dirname(vim.eval('s:SourcedFile'))\n
+\sys.path.append(module_folder)\n"
 
 "
 " TodoCreateBox
 " Create a single checkbox.
 "
 function! TodoCreateBox()
-exec g:_vimtodopy << endpython
-
-import localtodo
-localtodo.TodoCreateBox()
-
-endpython
+exec g:_vimtodopy "\n
+\\n
+\import localtodo\n
+\localtodo.TodoCreateBox()\n"
 endfunction
 command TodoCreateBox call TodoCreateBox()
 
@@ -60,12 +58,10 @@ command TodoCreateBox call TodoCreateBox()
 " Remove the checkbox.
 "
 function! TodoRemoveBox()
-exec g:_vimtodopy << endpython
-
-import localtodo
-localtodo.TodoRemoveBox()
-
-endpython
+exec g:_vimtodopy "\n
+\\n
+\import localtodo\n
+\localtodo.TodoRemoveBox()\n"
 endfunction
 command TodoRemoveBox call TodoRemoveBox()
 
@@ -75,12 +71,10 @@ command TodoRemoveBox call TodoRemoveBox()
 " a new empty checkbox if it isn't there yet.
 "
 function! TodoToggle()
-exec g:_vimtodopy << endpython
-
-import localtodo
-localtodo.TodoToggle()
-
-endpython
+exec g:_vimtodopy "\n
+\\n
+\import localtodo\n
+\localtodo.TodoToggle()\n"
 endfunction
 command TodoToggle call TodoToggle()
 
