@@ -15,7 +15,7 @@ endif
 " Register the current plugin folder into the sys.path
 "
 let s:SourcedFile=expand("<sfile>")
-python << endpython
+python3 << endpython
 import vim,os,sys
 
 module_folder = os.path.dirname(vim.eval('s:SourcedFile'))
@@ -27,7 +27,7 @@ endpython
 " Create a single checkbox.
 "
 function! TodoCreateBox()
-python << endpython
+python3 << endpython
 
 import localtodo
 localtodo.TodoCreateBox()
@@ -41,7 +41,7 @@ command TodoCreateBox call TodoCreateBox()
 " Remove the checkbox.
 "
 function! TodoRemoveBox()
-python << endpython
+python3 << endpython
 
 import localtodo
 localtodo.TodoRemoveBox()
@@ -56,7 +56,7 @@ command TodoRemoveBox call TodoRemoveBox()
 " a new empty checkbox if it isn't there yet.
 "
 function! TodoToggle()
-python << endpython
+python3 << endpython
 
 import localtodo
 localtodo.TodoToggle()
