@@ -11,11 +11,30 @@ if !exists("g:TodoShowSquareBrackets")
     let g:TodoShowSquareBrackets=1
 endif
 
+" -------------------------------------------------------------------------
+" Create a command for either python 2 or 3, depending on what is available
+" on the platform.
+" -------------------------------------------------------------------------
+let g:_vimtodopy=":py3 "
+if !has("python3")
+   if !has("python")
+       echo  "vim-todo requires Python 2 or 3."
+       unlet g:_vimtodopy
+       return
+   endif
+   let g:_vimtodopy=":py "
+endif
+
+
+" -------------------------------------------------------------------------
+" Register the commands using the python version
+" -------------------------------------------------------------------------
+
 "
 " Register the current plugin folder into the sys.path
 "
 let s:SourcedFile=expand("<sfile>")
-python3 << endpython
+exec g:_vimtodopy << endpython
 import vim,os,sys
 
 module_folder = os.path.dirname(vim.eval('s:SourcedFile'))
@@ -27,7 +46,7 @@ endpython
 " Create a single checkbox.
 "
 function! TodoCreateBox()
-python3 << endpython
+exec g:_vimtodopy << endpython
 
 import localtodo
 localtodo.TodoCreateBox()
@@ -41,7 +60,7 @@ command TodoCreateBox call TodoCreateBox()
 " Remove the checkbox.
 "
 function! TodoRemoveBox()
-python3 << endpython
+exec g:_vimtodopy << endpython
 
 import localtodo
 localtodo.TodoRemoveBox()
@@ -56,7 +75,7 @@ command TodoRemoveBox call TodoRemoveBox()
 " a new empty checkbox if it isn't there yet.
 "
 function! TodoToggle()
-python3 << endpython
+exec g:_vimtodopy << endpython
 
 import localtodo
 localtodo.TodoToggle()
