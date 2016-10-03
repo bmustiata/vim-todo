@@ -13,6 +13,11 @@ except Exception as e:
     uncheck_character = ' '
 
 try:
+    progress_character = vim.eval('g:TodoItemInProgress')
+except Exception as e:
+    progress_character = '-'
+
+try:
     show_square_brackets = vim.eval('g:TodoShowSquareBrackets')
 except Exception as e:
     show_square_brackets = '1'
@@ -69,10 +74,14 @@ def TodoToggle():
 
     if is_checked(current_line):
         current_line = remove_checkbox(current_line)
+        current_line = create_checkbox(current_line, progress_character)
+    elif is_in_progress(current_line):
+        current_line = remove_checkbox(current_line)
         current_line = create_checkbox(current_line, uncheck_character)
     else:
         current_line = remove_checkbox(current_line)
         current_line = create_checkbox(current_line, check_character)
+
     vim.current.range[0] = current_line
 
 
@@ -91,6 +100,12 @@ def is_checked(current_line):
         return True
 
 
+def is_in_progress(current_line):
+    m = CHECKBOX_REGEXP.match(current_line)
+    if m.group(CHECKBOX_TICK_INDEX) == progress_character:
+        return True
+
+
 def remove_checkbox(current_line):
     m = CHECKBOX_REGEXP.match(current_line)
     return m.group(CHECKBOX_INDENT_INDEX) + m.group(CHECKBOX_TEXT_INDEX)
@@ -100,7 +115,10 @@ def is_todo_line(current_line):
     m = CHECKBOX_REGEXP.match(current_line)
     if not m:
         return False
-    if m.group(CHECKBOX_TICK_INDEX) != check_character and m.group(CHECKBOX_TICK_INDEX) != uncheck_character:
+
+    ticked_character = m.group(CHECKBOX_TICK_INDEX)
+
+    if ticked_character != check_character and ticked_character != uncheck_character and ticked_character != progress_character:
         return False
 
     return True

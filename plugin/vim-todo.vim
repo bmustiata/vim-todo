@@ -7,6 +7,10 @@ if !exists("g:TodoItemUnChecked")
     let g:TodoItemUnChecked=' '
 endif
 
+if !exists("g:TodoItemInProgress")
+    let g:TodoItemInProgress='-'
+endif
+
 if !exists("g:TodoShowSquareBrackets")
     let g:TodoShowSquareBrackets=1
 endif

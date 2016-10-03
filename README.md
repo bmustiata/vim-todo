@@ -1,7 +1,7 @@
 vim-todo
 ========
 
-A super simple plugin that generates checkboxes that can be checked and unchecked. Simpe to use, full of features.
+A super simple plugin that generates checkboxes that can be checked, unchecked, and in progress. Simple to use, full of features.
 
 
 Usage and Installation
@@ -188,10 +188,26 @@ Initial text:
 
 And `TodoToggle` again:
 ```text
+1. [-] Go to the sea
+2. Watch the sea
+3. Go back
+```
+
+And `TodoToggle` again:
+```text
 1. [ ] Go to the sea
 2. Watch the sea
 3. Go back
 ```
+
+And `TodoToggle` again:
+```text
+1. [x] Go to the sea
+2. Watch the sea
+3. Go back
+```
+
+Etc.
 
 Configuration Variables
 -----------------------
@@ -202,15 +218,24 @@ The plugin allows configuration with the following variables:
 
     A string that specifies what characters to be used for the check value.
     If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
-    `]`, otherwise it must not contain an empty space.
+    `]`, otherwise it must not contain the `g:TodoItemUnChecked` or
+    `g:TodoItemInProgress`.
 
 2. `g:TodoItemUnChecked`
 
     A string that specifies what characters to be used for the unchecked value.
     If the `g:TodoShowSquareBrackets` is `1` then the expression must not contain
-    `]`, otherwise it must not contain an empty space.
+    `]`, otherwise it must not contain `g:TodoItemChecked` or
+    `g:TodoItemInProgress`.
 
-3. `g:TodoShowSquareBrackets`
+3. `g:TodoItemInProgress`
+
+    A string that specifies what characters to be used for an item that is still
+    in progress. If the `g:TodoShowSquareBrackets` is `1` then the expression
+    must not contain `]`, otherwise it must not contain `g:TodoItemUnChecked`
+    os `g:TodoItemChecked`.
+
+4. `g:TodoShowSquareBrackets`
 
     `0` or `1`, if to show the square brackets around the items checked or unchecked.
 
