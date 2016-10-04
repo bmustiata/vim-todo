@@ -74,13 +74,13 @@ def TodoToggle():
 
     if is_checked(current_line):
         current_line = remove_checkbox(current_line)
-        current_line = create_checkbox(current_line, progress_character)
+        current_line = create_checkbox(current_line, uncheck_character)
     elif is_in_progress(current_line):
         current_line = remove_checkbox(current_line)
-        current_line = create_checkbox(current_line, uncheck_character)
+        current_line = create_checkbox(current_line, check_character)
     else:
         current_line = remove_checkbox(current_line)
-        current_line = create_checkbox(current_line, check_character)
+        current_line = create_checkbox(current_line, progress_character)
 
     vim.current.range[0] = current_line
 
